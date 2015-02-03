@@ -40,4 +40,10 @@ May also be passed an optional options object which will extend the default valu
         });
     </script>
 
+Place the div before the closing of </body>:
+
+    <div id="splashscreen">
+        <!-- you can add your custoem preloader images etc.... -->
+    </div> 
+
 Tip: You can override CSS to customize the look.
