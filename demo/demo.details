@@ -1,0 +1,11 @@
+/*
+---
+name: SplashScreen.HTML - jsFiddle/Github integration demo
+description: jsFiddle demo hosted on Github for displaying Splash Screens on Mobile / Website
+authors:
+  - Sanal Menon
+resources:
+  - /scirpts/jquery.SplashScreen.js
+  - /css/jquery.SplashScreen.css
+...
+*/
