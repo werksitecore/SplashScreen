@@ -40,6 +40,11 @@ May also be passed an optional options object which will extend the default valu
         });
     </script>
 
+Accepted querystring parameter values for forceLoader are as follows
+- ?loader=true
+- ?loader=t
+- ?loader=1
+
 Place the div before the closing of &lt;/body&gt;
 
     <div id="splashscreen">
