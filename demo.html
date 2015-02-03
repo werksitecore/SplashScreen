@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>jQuery Splash Screen</title>
+    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="/scripts/jquery.SplashScreen.js"></script>
+    <link href="/css/jquery.SplashScreen.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.SplashScreen({
+                progressCount: true,
+                progressBar: true
+            });
+        });
+    </script>
+</head>
+<body>
+    <img src="http://placehold.it/600x400" />
+    <img src="http://placehold.it/300x200" />
+    <img src="http://placehold.it/1200x800" />
+    <img src="http://placehold.it/150x100" />
+    <img src="http://placehold.it/2400x1600" />
+    <img src="http://placehold.it/75x50" />
+    <div id="splashscreen">
+        <div id="progress"></div>
+        <div id="status"></div>
+    </div>
+</body>
+</html>
