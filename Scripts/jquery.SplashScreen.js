@@ -11,124 +11,125 @@
 
 (function (window, document, undefined) {
 
-	$.SplashScreen = function (options) {
+    $.SplashScreen = function (options) {
 
-		var settings = $.extend({
-		    id: 'splashscreen',
-			desktop: true,
-			mobile: true,
-			forceLoader: false,
-			queryParameter: 'loader',
-			progressCount: false,
-			progressCountId: 'status',
-			progressBar: false,
-			progressBarId: 'progress',
-			timeOut: 2200
-		}, options);
+        var settings = $.extend({
+            id: 'splashscreen',
+            desktop: true,
+            mobile: true,
+            forceLoader: false,
+            queryParameter: 'loader',
+            progressCount: false,
+            progressCountId: 'status',
+            progressBar: false,
+            progressBarId: 'progress',
+            timeOut: 2200
+        }, options);
 
-		function id(v) { return document.getElementById(v); }
+        function id(v) { return document.getElementById(v); }
 
-		function loadSplashScreen() {
+        function loadSplashScreen() {
 
-			var qstring = getQueryStringVars(window.location.href);
+            var qstring = getQueryStringVars(window.location.href);
 
-			if (settings.forceLoader) {
-				settings.forceLoader = qstring[settings.queryParameter] != null
+            if (settings.forceLoader) {
+                settings.forceLoader = qstring[settings.queryParameter] != null
 								&& qstring[settings.queryParameter] != ""
 								&& (qstring[settings.queryParameter] == "true" ||
 									qstring[settings.queryParameter] == "t" ||
 									qstring[settings.queryParameter] == "1") ? true : false;
-			}
+            }
 
-			if (settings.mobile) {
-				settings.mobile = $.DetectMobile() != null ? $.DetectMobile() : false;
-			}
+            if (settings.mobile) {
+                settings.mobile = $.DetectMobile() != null ? $.DetectMobile() : false;
+            }
 
-			if (settings.mobile || settings.desktop || settings.forceLoader) {
+            if (settings.mobile || settings.desktop || settings.forceLoader) {
 
-			    var overly = id(settings.id),
+                var overly = id(settings.id),
 				    img = document.images,
                     progCount = id(settings.progressCountId),
                     progBar = id(settings.progressBarId),
 				    c = 0;
-				    totalImages = img.length;
+                totalImages = img.length;
 
-				function imgLoaded() {
-				    c += 1;
+                function imgLoaded() {
+                    c += 1;
 
-				    if (settings.progressBar) {
-				        var percentage = ((100 / totalImages * c) << 0) + "%";
-				        progBar.style.width = percentage;
-				    }
+                    if (settings.progressBar) {
+                        var percentage = ((100 / totalImages * c) << 0) + "%";
+                        progBar.style.width = percentage;
+                    }
 
-				    if (settings.progressCount) {
-				        progCount.innerHTML = "Loading " + percentage;
-				    }
+                    if (settings.progressCount) {
+                        progCount.innerHTML = "Loading " + percentage;
+                    }
 
-					if (c === totalImages) return pageLoadCompleted();
-				}
+                    if (c === totalImages) {
+                        setTimeout(function () { return pageLoadCompleted() }, settings.timeOut);
+                    }
+                }
 
-				function pageLoadCompleted() {
-				    overly.style.opacity = 0;
-				    setTimeout(function () {
-				        overly.style.display = "none";
-				    }, settings.timeOut);
-				}
-				for (var i = 0; i < totalImages; i++) {
-					var tImg = new Image();
-					tImg.onload = imgLoaded;
-					tImg.onerror = imgLoaded;
-					tImg.src = img[i].src;
-				}
-			}
-			else {
-				id(settings.id).style.display = "none";
-			}
-		}
+                function pageLoadCompleted() {
+                    overly.style.opacity = 0;
+                    overly.style.display = "none";
+                }
 
-		function getQueryStringVars(url) {
-			var vars = [], hash;
-			var hashes = url.slice(url.indexOf('?') + 1).split('&');
-			for (var i = 0; i < hashes.length; i++) {
-				hash = hashes[i].split('=');
-				vars.push(hash[0]);
-				vars[hash[0]] = hash[1];
-			}
-			return vars;
-		}
+                for (var i = 0; i < totalImages; i++) {
+                    var tImg = new Image();
+                    tImg.onload = imgLoaded;
+                    tImg.onerror = imgLoaded;
+                    tImg.src = img[i].src;
+                }
+            }
+            else {
+                id(settings.id).style.display = "none";
+            }
+        }
 
-	    try {
-	        document.addEventListener('DOMContentLoaded', loadSplashScreen(), false);
-	    }
-	    catch(ex) {
-	        console.log(ex.message);
-	    }
-	}
+        function getQueryStringVars(url) {
+            var vars = [], hash;
+            var hashes = url.slice(url.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+
+        try {
+            document.addEventListener('DOMContentLoaded', loadSplashScreen(), false);
+        }
+        catch (ex) {
+            console.log(ex.message);
+        }
+    }
 
     //detecting mobile phone
-	$.DetectMobile = function () {
-		var isMobile = {
-			Android: function () {
-				return navigator.userAgent.match(/Android/i);
-			},
-			BlackBerry: function () {
-				return navigator.userAgent.match(/BlackBerry/i);
-			},
-			iOS: function () {
-				return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-			},
-			Opera: function () {
-				return navigator.userAgent.match(/Opera Mini/i);
-			},
-			Windows: function () {
-				return navigator.userAgent.match(/IEMobile/i);
-			},
-			any: function () {
-				return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
-			}
-		};
+    $.DetectMobile = function () {
+        var isMobile = {
+            Android: function () {
+                return navigator.userAgent.match(/Android/i);
+            },
+            BlackBerry: function () {
+                return navigator.userAgent.match(/BlackBerry/i);
+            },
+            iOS: function () {
+                return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+            },
+            Opera: function () {
+                return navigator.userAgent.match(/Opera Mini/i);
+            },
+            Windows: function () {
+                return navigator.userAgent.match(/IEMobile/i);
+            },
+            any: function () {
+                return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+            }
+        };
 
-		return isMobile.any();
-	}
+        return isMobile.any();
+    }
 
 })(window, document);
