@@ -23,7 +23,7 @@
             progressCountId: 'status',
             progressBar: false,
             progressBarId: 'progress',
-            timeOut: 2200
+            timeOut: 2000   // in milliseconds (eg: 2000 = 2sec)
         }, options);
 
         function id(v) { return document.getElementById(v); }
