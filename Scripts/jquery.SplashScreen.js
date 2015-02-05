@@ -1,6 +1,6 @@
 /*!
  * jQuery Splash Screen plugin
- * Version 1.00.1-2015.02.03
+ * Version 1.01.0-2015.02.03
  * Requires jQuery
  *
  * Dual licensed under the MIT and GPL licenses:
