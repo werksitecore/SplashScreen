@@ -61,19 +61,29 @@ Load files in the </p> section of your HTML document. Make sure you also add the
     $(document).ready(function() {
         $.SplashScreen({
             id: 'splashscreen',
-                desktop: true,
-                mobile: true,
-                forceLoader: false,
-                queryParameter: 'loader',
-                progressCount: false,
-                progressCountId: 'status',
-                progressBar: false,
-                progressBarId: 'progress',
-                timeOut: 2200
+            desktop: true,
+            mobile: true,
+            forceLoader: false,
+            queryParameter: 'loader',
+            progressCount: false,
+            progressCountId: 'status',
+            progressBar: false,
+            progressBarId: 'progress',
+            fadeEffect: true,
+            timeToFade: 1000, // in milliseconds (eg: 1000 = 1sec)
+            timeOut: 2000   // in milliseconds (eg: 2000 = 2sec)
         });
     });
 &lt;/script&gt;
 </code></pre>
+
+<p>Accepted querystring parameter values for forceLoader are as follows</p>
+
+<ul>
+<li>?loader=true</li>
+<li>?loader=t</li>
+<li>?loader=1</li>
+</ul>
 
 <p>Place the div before the closing of &lt;/body&gt;</p>
 
