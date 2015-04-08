@@ -72,7 +72,8 @@
                     }
 
                     if (c === totalImages) {
-                        setTimeout(function () { return pageLoadCompleted() }, settings.timeOut);
+                    	var element = document.getElementById(settings.id);
+                        element.IntervalPageCompleted = setTimeout(function () { return pageLoadCompleted() }, settings.timeOut);
                     }
                 }
 
