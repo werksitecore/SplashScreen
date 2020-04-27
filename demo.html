@@ -8,8 +8,18 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $.SplashScreen({
-                progressCount: true,
-                progressBar: true
+            id: 'splashscreen',
+            desktop: true,
+            mobile: true,
+            forceLoader: false,
+            queryParameter: 'loader',
+            progressCount: false,
+            progressCountId: 'status',
+            progressBar: true,
+            progressBarId: 'progress',
+            fadeEffect: true,
+            timeToFade: 1000, // in milliseconds (eg: 1000 = 1sec)
+            timeOut: 2000   // in milliseconds (eg: 2000 = 2sec)
             });
         });
     </script>
@@ -26,4 +36,7 @@
         <div id="status"></div>
     </div>
 </body>
+    <script>
+        setTimeout(() => {document.querySelector("#splashscreen").style.display = "none";}, 5000); 
+    </script>
 </html>
